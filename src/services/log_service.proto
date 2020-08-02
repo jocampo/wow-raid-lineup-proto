@@ -15,7 +15,7 @@ service LogService {
 message LogMessageRequest {
     // Sender UUID identifier
     string sender_uuid = 1;
-    LogMessage log_message = 2;
+    models.LogMessage log_message = 2;
 }
 
 message LogMessageResponse {
