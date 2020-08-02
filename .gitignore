@@ -109,3 +109,9 @@ dist
 proto-objects.js
 proto-objects.d.ts
 proto_out/
+
+# Ignore Gradle project-specific cache directory
+.gradle
+
+# Ignore Gradle build output directory
+build
