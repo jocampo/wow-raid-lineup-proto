@@ -4,11 +4,24 @@
   "description": "Nondescript",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "compileProto": "./compileProto.sh"
+  },
+  "files": [
+    "**/*.proto",
+    "**/*.js",
+    "**/*.ts"
+  ],
+  "dependencies": {
+    "protobufjs": "^6.10.1",
+    "ts-protoc-gen": "^0.12.0"
+  },
+  "publishConfig": {
+    "registry": "https://npm.pkg.github.com/"
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/jocampo/wow-raid-lineup-proto.git"
+    "url": "ssh://git@github.com/jocampo/wow-raid-lineup-proto.git",
+    "directory": "proto/npm"
   },
   "keywords": [],
   "author": "",
