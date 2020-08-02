@@ -4,34 +4,31 @@
  * This generated file contains a sample Kotlin library project to get you started.
  */
 
-plugins {
-    // Apply the Kotlin JVM plugin to add support for Kotlin.
-    id("org.jetbrains.kotlin.jvm") version "1.3.72"
+// A minimal example Java project that uses the protobuf plugin.
+// To build it:
+// $ ../gradlew clean build
 
-    id("com.google.protobuf") version "0.8.8"
-
-    // Apply the java-library plugin for API and implementation separation.
-    id("java-library")
-}
+apply plugin: 'java'
+apply plugin: 'com.google.protobuf'
+apply plugin: 'idea'
 
 repositories {
-    // Use jcenter for resolving dependencies.
-    // You can declare any Maven/Ivy/file repository here.
-    jcenter()
-    maven {
-        url "https://jitpack.io"
+    maven { url "https://plugins.gradle.org/m2/" }
+}
+
+buildscript {
+    repositories {
+        maven { url "https://plugins.gradle.org/m2/" }
+    }
+    dependencies {
+        classpath 'com.google.protobuf:protobuf-gradle-plugin:0.8.8'
     }
 }
 
 dependencies {
-    // Align versions of all Kotlin components
-    implementation(platform("org.jetbrains.kotlin:kotlin-bom"))
-
-    // Use the Kotlin JDK 8 standard library.
-    implementation("org.jetbrains.kotlin:kotlin-stdlib-jdk8")
-
-    implementation("com.github.googleapis.gax-kotlin:kgax-grpc:master-SNAPSHOT")
-
+    compile 'com.google.protobuf:protobuf-java:3.7.1'
+    compile 'io.grpc:grpc-stub:1.30.2'
+    compile 'io.grpc:grpc-protobuf:1.31.0'
     if (JavaVersion.current().isJava9Compatible()) {
         // Workaround for @javax.annotation.Generated
         // see: https://github.com/grpc/grpc-java/issues/3633
@@ -47,25 +44,22 @@ sourceSets {
     }
 }
 
-sourceSets.main.java.srcDirs += 'build/generated/source/proto/main/java'
-
-compileKotlin.dependsOn ':generateProto'
-
 protobuf {
     protoc {
         artifact = "com.google.protobuf:protoc:3.7.1"
     }
     plugins {
-        client {
-            artifact = "com.github.googleapis:gapic-generator-kotlin:master-SNAPSHOT:core@jar"
+        grpc {
+            artifact = "io.grpc:protoc-gen-grpc-java:1.31.0"
         }
     }
     generateProtoTasks {
-        all().each { task ->
-            task.plugins {
-                // this generates your client library and helper Kotlin builders!
-                client {}
-            }
+        ofSourceSet('main')*.plugins {
+        // Apply the "grpc" plugin whose spec is defined above, without
+        // options.  Note the braces cannot be omitted, otherwise the
+        // plugin will not be added. This is because of the implicit way
+        // NamedDomainObjectContainer binds the methods.
+            grpc { }
         }
     }
 }
