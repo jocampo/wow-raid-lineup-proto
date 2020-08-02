@@ -7,10 +7,13 @@
 // A minimal example Java project that uses the protobuf plugin.
 // To build it:
 // $ ../gradlew clean build
+group = 'org.jocampo.lineup.proto'
+version = '1.0'
 
 apply plugin: 'java'
 apply plugin: 'com.google.protobuf'
 apply plugin: 'idea'
+apply plugin: 'maven-publish'
 
 repositories {
     maven { url "https://plugins.gradle.org/m2/" }
@@ -60,6 +63,23 @@ protobuf {
         // plugin will not be added. This is because of the implicit way
         // NamedDomainObjectContainer binds the methods.
             grpc { }
+        }
+    }
+}
+publishing {
+    repositories {
+        maven {
+            name = "GitHubPackages"
+            url = uri("https://maven.pkg.github.com/jocampo/wow-raid-lineup-proto")
+            credentials {
+                username = System.getenv("GITHUB_ACTOR")
+                password = System.getenv("GITHUB_TOKEN")
+            }
+        }
+    }
+    publications {
+        gpr(MavenPublication) {
+            from(components.java)
         }
     }
 }
