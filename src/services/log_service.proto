@@ -1,0 +1,23 @@
+syntax = "proto3";
+
+package services;
+
+option java_package = "org.jocampo.lineup.protobuf";
+option java_outer_classname = "LogServiceProto";
+
+import "models/log_message.proto";
+
+service LogService {
+    // Logs a message
+    rpc LogMessage (LogMessageRequest) returns (LogMessageResponse) {}
+}
+
+message LogMessageRequest {
+    // Sender UUID identifier
+    string sender_uuid = 1;
+    LogMessage log_message = 2;
+}
+
+message LogMessageResponse {
+    // Blank for now
+}

@@ -1,0 +1,9 @@
+syntax = "proto3";
+
+package common;
+
+option java_package = "org.jocampo.lineup.protobuf";
+option java_outer_classname = "VoidProto";
+
+message Void {
+}
