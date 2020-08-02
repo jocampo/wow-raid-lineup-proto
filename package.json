@@ -1,0 +1,20 @@
+{
+  "name": "@jocampo/wow-raid-lineup-proto",
+  "version": "1.0.0",
+  "description": "Nondescript",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/jocampo/wow-raid-lineup-proto.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/jocampo/wow-raid-lineup-proto/issues"
+  },
+  "homepage": "https://github.com/jocampo/wow-raid-lineup-proto#readme"
+}
