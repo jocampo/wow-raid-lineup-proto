@@ -1,0 +1,4 @@
+# Ignore everything except what we want to publish
+*
+!proto-*.js
+!proto-*.d.ts

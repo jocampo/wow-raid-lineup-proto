@@ -6,8 +6,8 @@ PWD="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )"
 PROTO_PATH=$PWD/src
 PROTO_DIR="${PWD}/proto_out"
 
-rm -f "${PWD}/npm-build/proto-objects.js"
-rm -f "${PWD}/npm-build/proto-objects.d.ts"
+rm -f "${PWD}/proto-objects.js"
+rm -f "${PWD}/proto-objects.d.ts"
 rm -rf "${PROTO_DIR}"
 
 mkdir "${PROTO_DIR}"
