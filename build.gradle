@@ -31,6 +31,12 @@ dependencies {
     implementation("org.jetbrains.kotlin:kotlin-stdlib-jdk8")
 
     implementation("com.github.googleapis.gax-kotlin:kgax-grpc:master-SNAPSHOT")
+
+    if (JavaVersion.current().isJava9Compatible()) {
+        // Workaround for @javax.annotation.Generated
+        // see: https://github.com/grpc/grpc-java/issues/3633
+        compile 'javax.annotation:javax.annotation-api:1.3.1'
+    }
 }
 
 sourceSets {
@@ -40,6 +46,10 @@ sourceSets {
         }
     }
 }
+
+sourceSets.main.java.srcDirs += 'build/generated/source/proto/main/java'
+
+compileKotlin.dependsOn ':generateProto'
 
 protobuf {
     protoc {
@@ -59,5 +69,3 @@ protobuf {
         }
     }
 }
-sourceSets.main.java.srcDirs += 'build/generated/source/proto/main/java'
-compileKotlin.dependsOn ':generateProto'
