@@ -7,7 +7,7 @@
 // A minimal example Java project that uses the protobuf plugin.
 // To build it:
 // $ ../gradlew clean build
-group = 'org.jocampo.lineup.proto'
+group = 'org.jocampo'
 version = '1.0'
 
 apply plugin: 'java'
